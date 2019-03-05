@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const express = require('express');
 const passport = require('passport');
 
@@ -14,4 +15,4 @@ setupMiddlewares(app, passport);
 setupPassport(passport);
 setupRoutes(app);
 
-app.listen(PORT);
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

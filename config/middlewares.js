@@ -1,3 +1,5 @@
+const path = require('path');
+const express = require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const expressHBS = require('express-handlebars');
@@ -26,4 +28,7 @@ module.exports = (app, passport) => {
     res.locals.user = req.user || null;
     next();
   });
+
+  // static assets
+  app.use(express.static(path.join(__dirname, '../public')));
 };
