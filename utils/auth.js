@@ -9,8 +9,8 @@ module.exports = {
   ensureGurest: (req, res, next) => {
     if (req.isAuthenticated()) {
       res.redirect('/dashboard');
+    } else {
+      return next();
     }
-
-    return next();
   }
 };
