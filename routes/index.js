@@ -1,10 +1,12 @@
 const router = require('express').Router();
 
-router.get('/', (req, res) => {
+const { ensureAuthenticated, ensureGurest } = require('../utils/auth');
+
+router.get('/', ensureGurest, (req, res) => {
   res.render('index/welcome');
 });
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', ensureAuthenticated, (req, res) => {
   res.render('index/dashboard');
 });
 
