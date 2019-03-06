@@ -43,4 +43,4 @@ const storySchema = new mongoose.Schema({
   }
 });
 
-mongoose.model('stories', storySchema);
+mongoose.model('stories', storySchema, 'stories');

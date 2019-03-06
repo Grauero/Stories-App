@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const expressHBS = require('express-handlebars');
@@ -12,6 +13,8 @@ module.exports = (app, passport) => {
   app.set('view engine', 'handlebars');
 
   // routes middlewares
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
   app.use(cookieParser());
   app.use(
     session({
