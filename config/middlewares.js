@@ -5,11 +5,18 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const expressHBS = require('express-handlebars');
 
+const { truncate, stripTags } = require('../utils/hbs');
 const keys = require('./keys');
 
 module.exports = (app, passport) => {
   // handlebars middlewares
-  app.engine('handlebars', expressHBS({ defaultLayout: 'main' }));
+  app.engine(
+    'handlebars',
+    expressHBS({
+      helpers: { truncate, stripTags },
+      defaultLayout: 'main'
+    })
+  );
   app.set('view engine', 'handlebars');
 
   // routes middlewares

@@ -8,8 +8,9 @@ const { ensureAuthenticated } = require('../utils/auth');
 
 router
   .route('/')
-  .get((req, res) => {
-    res.render('stories/index');
+  .get(async (req, res) => {
+    const stories = await Story.find({ status: 'public' }).populate('user');
+    res.render('stories/index', { stories });
   })
   .post(async (req, res) => {
     // check for checkbox value in sended form
