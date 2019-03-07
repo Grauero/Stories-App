@@ -31,4 +31,9 @@ router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
 });
 
+router.get('/show/:id', async (req, res) => {
+  const story = await Story.findOne({ _id: req.params.id }).populate('user');
+  res.render('stories/show', { story });
+});
+
 module.exports = router;
