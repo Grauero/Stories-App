@@ -1,9 +1,7 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 
-const User = mongoose.model('users');
 const Story = mongoose.model('stories');
-
 const { ensureAuthenticated } = require('../utils/auth');
 
 router
@@ -27,10 +25,25 @@ router
     res.redirect(`/stories/show/${createdStory.id}`);
   });
 
-router.get('/show/:id', async (req, res) => {
-  const story = await Story.findOne({ _id: req.params.id }).populate('user');
-  res.render('stories/show', { story });
-});
+router
+  .route('/:id')
+  .put(async (req, res) => {
+    // check for checkbox value in sended form
+    const allowComments = Boolean(req.body.allowComments);
+    const story = await Story.findOne({ _id: req.params.id });
+
+    story.title = req.body.title;
+    story.body = req.body.body;
+    story.status = req.body.status;
+    story.allowComments = allowComments;
+
+    await story.save();
+    res.redirect('/dashboard');
+  })
+  .delete(async (req, res) => {
+    await Story.deleteOne({ _id: req.params.id });
+    res.redirect('/dashboard');
+  });
 
 router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
@@ -41,18 +54,9 @@ router.get('/edit/:id', ensureAuthenticated, async (req, res) => {
   res.render('stories/edit', { story });
 });
 
-router.put('/:id', async (req, res) => {
-  // check for checkbox value in sended form
-  const allowComments = Boolean(req.body.allowComments);
-  const story = await Story.findOne({ _id: req.params.id });
-
-  story.title = req.body.title;
-  story.body = req.body.body;
-  story.status = req.body.status;
-  story.allowComments = allowComments;
-
-  await story.save();
-  res.redirect('/dashboard');
+router.get('/show/:id', async (req, res) => {
+  const story = await Story.findOne({ _id: req.params.id }).populate('user');
+  res.render('stories/show', { story });
 });
 
 module.exports = router;

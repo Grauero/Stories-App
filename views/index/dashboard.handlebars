@@ -20,7 +20,7 @@
       </td>
       <td>
         <!-- date Format: March 7th 2019 -->
-        {{formatDate data 'MMMM do YYYY'}}
+        {{formatDate date 'MMMM do YYYY'}}
       </td>
       <td>
         <span class="dash-status">{{status}}</span>
@@ -30,7 +30,10 @@
           <i class="fa fa-pencil"></i> Edit
         </a>
 
-        <form action="/stories/{{id}}" method="post" id="delete-form">
+        <form action="/stories/{{id}}?_method=DELETE" method="post" id="delete-form">
+          <!-- hidden input for changing HTTP verb from POST to DELETE -->
+          <input type="hidden" name="_method" value="delete">
+
           <button type="submit" class="btn red">
             <i class="fa fa-remove"></i> Delete
           </button>
