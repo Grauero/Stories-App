@@ -41,4 +41,18 @@ router.get('/edit/:id', ensureAuthenticated, async (req, res) => {
   res.render('stories/edit', { story });
 });
 
+router.put('/:id', async (req, res) => {
+  // check for checkbox value in sended form
+  const allowComments = Boolean(req.body.allowComments);
+  const story = await Story.findOne({ _id: req.params.id });
+
+  story.title = req.body.title;
+  story.body = req.body.body;
+  story.status = req.body.status;
+  story.allowComments = allowComments;
+
+  await story.save();
+  res.redirect('/dashboard');
+});
+
 module.exports = router;

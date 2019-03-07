@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const methodOverride = require('method-override');
 const expressHBS = require('express-handlebars');
 
 const { truncate, stripTags, formatDate, select } = require('../utils/hbs');
@@ -35,6 +36,7 @@ module.exports = (app, passport) => {
       saveUninitialized: false
     })
   );
+  app.use(methodOverride('_method'));
 
   // auth middlewares
   app.use(passport.initialize());
