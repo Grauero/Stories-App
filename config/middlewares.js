@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const expressHBS = require('express-handlebars');
 
-const { truncate, stripTags, formatDate } = require('../utils/hbs');
+const { truncate, stripTags, formatDate, select } = require('../utils/hbs');
 const keys = require('./keys');
 
 module.exports = (app, passport) => {
@@ -13,7 +13,12 @@ module.exports = (app, passport) => {
   app.engine(
     'handlebars',
     expressHBS({
-      helpers: { truncate, stripTags, formatDate },
+      helpers: {
+        truncate,
+        stripTags,
+        formatDate,
+        select
+      },
       defaultLayout: 'main'
     })
   );

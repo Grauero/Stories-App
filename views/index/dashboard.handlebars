@@ -1,4 +1,4 @@
-<h1>Welcome {{user.firstName}}</h1>
+<h2>Welcome {{user.firstName}}</h2>
 <h4>Your stories</h4>
 {{#if stories}}
 <table class="striped">
@@ -19,6 +19,7 @@
         <a href="/stories/show/{{id}}">{{title}}</a>
       </td>
       <td>
+        <!-- Date Format: March 7th 2019 -->
         {{formatDate data 'MMMM do YYYY'}}
       </td>
       <td>

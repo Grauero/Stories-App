@@ -27,13 +27,18 @@ router
     res.redirect(`/stories/show/${createdStory.id}`);
   });
 
+router.get('/show/:id', async (req, res) => {
+  const story = await Story.findOne({ _id: req.params.id }).populate('user');
+  res.render('stories/show', { story });
+});
+
 router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
 });
 
-router.get('/show/:id', async (req, res) => {
-  const story = await Story.findOne({ _id: req.params.id }).populate('user');
-  res.render('stories/show', { story });
+router.get('/edit/:id', ensureAuthenticated, async (req, res) => {
+  const story = await Story.findOne({ _id: req.params.id });
+  res.render('stories/edit', { story });
 });
 
 module.exports = router;
