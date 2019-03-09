@@ -55,8 +55,22 @@ router.get('/edit/:id', ensureAuthenticated, async (req, res) => {
 });
 
 router.get('/show/:id', async (req, res) => {
-  const story = await Story.findOne({ _id: req.params.id }).populate('user');
+  const story = await Story.findOne({ _id: req.params.id })
+    .populate('user')
+    .populate('comments.commentUser');
   res.render('stories/show', { story });
+});
+
+router.post('/comment/:id', async (req, res) => {
+  const story = await Story.findOne({ _id: req.params.id });
+  const newComment = {
+    commentBody: req.body.commentBody,
+    commentUser: req.user.id
+  };
+  story.comments.unshift(newComment);
+
+  await story.save();
+  res.redirect(`/stories/show/${story.id}`);
 });
 
 module.exports = router;

@@ -11,7 +11,6 @@ module.exports = (passport) => {
         clientID: keys.googleClientID,
         clientSecret: keys.googleClientSecret,
         callbackURL: '/auth/google/callback',
-        userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
         proxy: true
       },
       async (accessToken, refreshToken, profile, done) => {
