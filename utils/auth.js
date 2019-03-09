@@ -6,7 +6,7 @@ module.exports = {
 
     res.redirect('/');
   },
-  ensureGurest: (req, res, next) => {
+  ensureGuest: (req, res, next) => {
     if (req.isAuthenticated()) {
       res.redirect('/dashboard');
     } else {

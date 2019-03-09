@@ -6,7 +6,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const expressHBS = require('express-handlebars');
 
-const { truncate, stripTags, formatDate, select } = require('../utils/hbs');
+const { truncate, stripTags, formatDate, select, editIcon } = require('../utils/hbs');
 const keys = require('./keys');
 
 module.exports = (app, passport) => {
@@ -18,7 +18,8 @@ module.exports = (app, passport) => {
         truncate,
         stripTags,
         formatDate,
-        select
+        select,
+        editIcon
       },
       defaultLayout: 'main'
     })

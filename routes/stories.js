@@ -7,7 +7,10 @@ const { ensureAuthenticated } = require('../utils/auth');
 router
   .route('/')
   .get(async (req, res) => {
-    const stories = await Story.find({ status: 'public' }).populate('user');
+    const stories = await Story.find({ status: 'public' })
+      .populate('user')
+      .sort({ date: 'desc' });
+
     res.render('stories/index', { stories });
   })
   .post(async (req, res) => {
@@ -51,6 +54,10 @@ router.get('/add', ensureAuthenticated, (req, res) => {
 
 router.get('/edit/:id', ensureAuthenticated, async (req, res) => {
   const story = await Story.findOne({ _id: req.params.id });
+  if (story.user !== req.user.id) {
+    return res.redirect('/stories');
+  }
+
   res.render('stories/edit', { story });
 });
 
@@ -58,6 +65,7 @@ router.get('/show/:id', async (req, res) => {
   const story = await Story.findOne({ _id: req.params.id })
     .populate('user')
     .populate('comments.commentUser');
+
   res.render('stories/show', { story });
 });
 
