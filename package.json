@@ -1,14 +1,27 @@
 {
   "name": "stories-app",
+  "description": "Stories Application",
+  "author": "Grauero",
+  "keywords": [
+    "Stories",
+    "Public",
+    "Private",
+    "Node",
+    "Express",
+    "MongoDB",
+    "Handlebars"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Grauero/Stories-App.git"
+  },
+  "private": true,
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
