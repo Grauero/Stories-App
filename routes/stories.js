@@ -52,13 +52,27 @@ router.get('/add', ensureAuthenticated, (req, res) => {
   res.render('stories/add');
 });
 
+router.get('/my', ensureAuthenticated, async (req, res) => {
+  const stories = await Story.find({ user: req.user.id }).populate('user');
+  res.render('stories/index', { stories });
+});
+
+router.get('/user/:userId', async (req, res) => {
+  const stories = await Story.find({
+    user: req.params.userId,
+    status: 'public'
+  }).populate('user');
+
+  res.render('stories/index', { stories });
+});
+
 router.get('/edit/:id', ensureAuthenticated, async (req, res) => {
   const story = await Story.findOne({ _id: req.params.id });
-  if (story.user !== req.user.id) {
-    return res.redirect('/stories');
+  if (story.user == req.user.id) {
+    return res.render('stories/edit', { story });
   }
 
-  res.render('stories/edit', { story });
+  return res.redirect('/stories');
 });
 
 router.get('/show/:id', async (req, res) => {
@@ -66,7 +80,12 @@ router.get('/show/:id', async (req, res) => {
     .populate('user')
     .populate('comments.commentUser');
 
-  res.render('stories/show', { story });
+  // show PRIVATE story ONLY if user is creator of this story and he is authenticated
+  if (story.status === 'public') return res.render('stories/show', { story });
+  if (!req.user) return res.redirect('/stories');
+  if (req.user.id == story.user._id) return res.render('stories/show', { story });
+
+  res.redirect('/stories');
 });
 
 router.post('/comment/:id', async (req, res) => {

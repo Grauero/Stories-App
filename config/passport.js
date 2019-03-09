@@ -11,18 +11,16 @@ module.exports = (passport) => {
         clientID: keys.googleClientID,
         clientSecret: keys.googleClientSecret,
         callbackURL: '/auth/google/callback',
+        userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo',
         proxy: true
       },
       async (accessToken, refreshToken, profile, done) => {
-        let image = profile.photos[0].value;
-        image = image.substring(0, image.indexOf('?')); // remove default size of profile image
-
         let newUser = {
           googleID: profile.id,
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
           email: profile.emails[0].value,
-          image
+          image: profile.photos[0].value
         };
 
         // check for existng user

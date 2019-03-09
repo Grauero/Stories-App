@@ -19,6 +19,7 @@ module.exports = {
     'no-underscore-dangle': 0,
     'consistent-return': 0,
     'global-require': 0,
-    'prefer-destructuring': 0
+    'prefer-destructuring': 0,
+    eqeqeq: 0
   }
 };

@@ -16,6 +16,16 @@ footer {
   margin-top: 20px;
 }
 
+.links li a:not(:last-child) {
+  padding-right: 5px;
+  border-right: 1px solid white;
+}
+
+.btn-edit,
+.btn-delete {
+  width: 10em;
+}
+
 .story-text {
   height: 120px;
 }

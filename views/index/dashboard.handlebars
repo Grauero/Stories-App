@@ -26,7 +26,7 @@
         <span class="dash-status">{{status}}</span>
       </td>
       <td>
-        <a href="/stories/edit/{{id}}" class="btn left-align">
+        <a href="/stories/edit/{{id}}" class="btn btn-edit left-align">
           <i class="fa fa-pencil"></i> Edit
         </a>
 
@@ -34,7 +34,7 @@
           <!-- hidden input for changing HTTP verb from POST to DELETE -->
           <input type="hidden" name="_method" value="delete">
 
-          <button type="submit" class="btn red">
+          <button type="submit" class="btn btn-delete red">
             <i class="fa fa-remove"></i> Delete
           </button>
         </form>
