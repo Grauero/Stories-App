@@ -34,6 +34,11 @@ footer {
   text-transform: capitalize;
 }
 
-#delete-form {
+.delete-form {
   display: inline;
+}
+
+.story-title {
+  color: #035e8a;
+  text-decoration: underline;
 }

@@ -1,23 +1,23 @@
 <nav class="grey darken-3">
   <div class="container">
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo center">Stories App</a>
-      <a href="#" data-activates="main-menu" class="button-collapse show-on-large">
+      <a href="/" class="brand-logo center" aria-label="logo">Stories App</a>
+      <a href="#" data-activates="main-menu" class="button-collapse show-on-large" aria-label="menu">
         <i class="fa fa-bars"></i>
       </a>
 
       <!-- right nav -->
-      <ul class="right hide-on-small-only">
+      <ul class="right hide-on-med-and-down">
         {{#if user}}
         <li>
-          <a href="/dashboard">Welcome {{user.firstName}}</a>
+          <a href="/dashboard" aria-label="dashboard">Welcome {{user.firstName}}</a>
         </li>
         <li>
-          <a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout</a>
+          <a href="/auth/logout" aria-label="logout"><i class="fa fa-sign-out"></i> Logout</a>
         </li>
         {{else}}
         <li>
-          <a href="/stories">
+          <a href="/stories" aria-label="stories">
             <i class="fa fa-book"></i> Public Stories
           </a>
         </li>
@@ -29,30 +29,30 @@
         {{#if user}}
         {{else}}
         <li>
-          <a href="/auth/google" class="btn red darken-1">
+          <a href="/auth/google" class="btn red darken-1" aria-label="login with google">
             <i class="fa fa-google left"></i> Login With Google
           </a>
         </li>
         {{/if}}
         <li>
-          <a href="/stories">
+          <a href="/stories" aria-label="stories">
             <i class="fa fa-book"></i> Public Stories
           </a>
         </li>
         {{#if user}}
         <li class="divider"></li>
         <li>
-          <a href="/dashboard">
+          <a href="/dashboard" aria-label="dashboard">
             <i class="fa fa-cog"></i> Dashboard
           </a>
         </li>
         <li>
-          <a href="/stories/my">
+          <a href="/stories/my" aria-label="my stories">
             <i class="fa fa-user"></i> My Stories
           </a>
         </li>
         <li>
-          <a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout</a>
+          <a href="/auth/logout" aria-label="logout"><i class="fa fa-sign-out"></i> Logout</a>
         </li>
         {{/if}}
       </ul>

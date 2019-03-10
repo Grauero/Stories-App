@@ -28,7 +28,7 @@
           <input type="submit" value="Submit" class="btn">
         </form>
         {{else}}
-        <p><a href="/auth/google">log in</a> to leave comments</p>
+        <p><a href="/auth/google" aria-label="login with google">log in</a> to leave comments</p>
         {{/if}}
       </div>
     </div>
@@ -39,7 +39,7 @@
         <h5>{{commentBody}}</h5>
         <div class="chip">
           <img src="{{commentUser.image}}" alt="user avatar">
-          <a href="/stories/user/{{commentUser.id}}">
+          <a href="/stories/user/{{commentUser.id}}" aria-label="user stories">
             {{commentUser.firstName}} {{commentUser.lastName}}
           </a>
         </div>
@@ -61,7 +61,7 @@
         <img src="{{story.user.image}}" alt="user avatar" class="circle responsive-img">
       </div>
       <div class="card-action">
-        <a href="/stories/user/{{story.user.id}}">More From {{story.user.firstName}}</a>
+        <a href="/stories/user/{{story.user.id}}" aria-label="user stories">More From {{story.user.firstName}}</a>
       </div>
     </div>
   </div>

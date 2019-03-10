@@ -16,7 +16,7 @@
     {{#each stories}}
     <tr>
       <td>
-        <a href="/stories/show/{{id}}">{{title}}</a>
+        <a class="story-title" href="/stories/show/{{id}}" aria-label="title">{{title}}</a>
       </td>
       <td>
         <!-- date Format: March 7th 2019 -->
@@ -26,11 +26,11 @@
         <span class="dash-status">{{status}}</span>
       </td>
       <td>
-        <a href="/stories/edit/{{id}}" class="btn btn-edit left-align">
+        <a href="/stories/edit/{{id}}" class="btn btn-edit left-align" aria-label="edit">
           <i class="fa fa-pencil"></i> Edit
         </a>
 
-        <form action="/stories/{{id}}?_method=DELETE" method="post" id="delete-form">
+        <form action="/stories/{{id}}?_method=DELETE" method="post" class="delete-form">
           <!-- hidden input for changing HTTP verb from POST to DELETE -->
           <input type="hidden" name="_method" value="delete">
 

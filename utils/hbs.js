@@ -30,14 +30,14 @@ module.exports = {
     if (storyUser === loggedUser) {
       if (floating) {
         return `
-          <a href="/stories/edit/${storyId}" class="btn-floating halfway-fab red">
+          <a href="/stories/edit/${storyId}" class="btn-floating halfway-fab red" aria-label="edit">
             <i class="fa fa-pencil"></i>
           </a>
         `;
       }
 
       return `
-          <a href="/stories/edit/${storyId}">
+          <a href="/stories/edit/${storyId}" aria-label="edit">
             <i class="fa fa-pencil"></i>
           </a>
         `;
